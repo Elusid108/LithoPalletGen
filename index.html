@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LithoPalletGen - Palette Generator for PIXEstl</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-left">
+            <h1 class="app-title">LithoPalletGen</h1>
+        </div>
+        <div class="header-right">
+            <button id="btn-import" class="header-btn" title="Import Palette JSON">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zm7-18L5.33 9h3.67v4h4V9h3.67L12 2z"/></svg>
+                <span class="btn-label">Import</span>
+            </button>
+            <button id="btn-settings" class="header-btn" title="Settings">
+                <svg class="icon" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 00-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.61 3.61 0 018.4 12 3.61 3.61 0 0112 8.4a3.61 3.61 0 013.6 3.6 3.61 3.61 0 01-3.6 3.6z"/></svg>
+                <span class="btn-label">Settings</span>
+            </button>
+            <button id="btn-theme" class="header-btn" title="Toggle Theme">
+                <svg class="icon icon-theme-light" viewBox="0 0 24 24"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0-3a1 1 0 01-1-1V1a1 1 0 112 0v2a1 1 0 01-1 1zm0 18a1 1 0 01-1-1v-2a1 1 0 112 0v2a1 1 0 01-1 1zm9-9a1 1 0 01-1 1h-2a1 1 0 110-2h2a1 1 0 011 1zM6 12a1 1 0 01-1 1H3a1 1 0 110-2h2a1 1 0 011 1zm12.36-5.64a1 1 0 01-.7-.3l-1.42-1.42a1 1 0 111.41-1.41l1.42 1.42a1 1 0 01-.71 1.71zM7.05 18.36a1 1 0 01-.7-.3l-1.42-1.42a1 1 0 111.41-1.41l1.42 1.42a1 1 0 01-.71 1.71zM18.36 18.36a1 1 0 01-.71-.3 1 1 0 010-1.41l1.42-1.42a1 1 0 111.41 1.41l-1.42 1.42a1 1 0 01-.7.3zM7.05 7.05a1 1 0 01-.71-.29 1 1 0 010-1.42l1.42-1.42a1 1 0 111.41 1.42L7.76 6.76a1 1 0 01-.71.29z"/></svg>
+                <svg class="icon icon-theme-dark" viewBox="0 0 24 24"><path d="M12 3a9 9 0 109 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 01-4.4 2.26 5.403 5.403 0 01-3.14-9.8C13.06 3.04 12.53 3 12 3z"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile tab bar -->
+    <nav class="mobile-tabs" aria-label="Main sections">
+        <button class="tab-btn active" data-tab="image">Image</button>
+        <button class="tab-btn" data-tab="palette">Palette</button>
+    </nav>
+
+    <main class="app-main">
+        <!-- Left Panel: Image Viewer -->
+        <section class="panel panel-image" id="panel-image">
+            <div class="panel-toolbar">
+                <button id="btn-upload" class="toolbar-btn" title="Upload Image">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                    Upload
+                </button>
+                <button id="btn-url" class="toolbar-btn" title="Load from URL">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
+                    URL
+                </button>
+                <div class="toolbar-spacer"></div>
+                <button id="btn-manage" class="toolbar-btn" title="Manage Images">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"/></svg>
+                    Manage
+                </button>
+            </div>
+
+            <div class="image-viewport" id="image-viewport">
+                <canvas id="image-canvas"></canvas>
+                <div class="empty-state" id="empty-state">
+                    <svg class="empty-icon" viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                    <p>Upload an image to get started</p>
+                </div>
+                <div class="eyedropper-overlay" id="eyedropper-overlay" hidden>
+                    <div class="eyedropper-box" id="eyedropper-box"></div>
+                    <div class="eyedropper-preview" id="eyedropper-preview">
+                        <div class="preview-swatch" id="preview-swatch"></div>
+                        <span class="preview-value" id="preview-value">#000000</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="image-nav">
+                <button id="btn-prev" class="nav-btn" title="Previous Image" disabled>
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                </button>
+                <div class="thumbnail-strip" id="thumbnail-strip"></div>
+                <button id="btn-next" class="nav-btn" title="Next Image" disabled>
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Resizable divider -->
+        <div class="divider" id="divider"></div>
+
+        <!-- Right Panel: Palette Toolbox -->
+        <section class="panel panel-toolbox" id="panel-toolbox">
+            <div class="toolbox-header">
+                <h2>Palette Builder</h2>
+                <div class="completion-badge" id="completion-badge">
+                    <span id="completion-text">0/0 layers</span>
+                </div>
+            </div>
+
+            <div class="toolbox-controls">
+                <label class="control-row">
+                    <span>Layers per color:</span>
+                    <input type="number" id="layer-count" min="1" max="20" value="5">
+                </label>
+            </div>
+
+            <div class="palette-list" id="palette-list">
+                <!-- Base colors rendered here dynamically -->
+            </div>
+
+            <div class="toolbox-actions">
+                <button id="btn-add-color" class="action-btn btn-add">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                    Add Color
+                </button>
+                <button id="btn-export" class="action-btn btn-export" disabled>
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    Export Palette
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Image Manager Modal -->
+    <dialog id="modal-manage" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Manage Images</h3>
+                <button class="modal-close" data-close>&times;</button>
+            </div>
+            <div class="modal-toolbar">
+                <label class="select-all-label">
+                    <input type="checkbox" id="select-all"> Select All
+                </label>
+                <button id="btn-delete-selected" class="toolbar-btn btn-danger" disabled>
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+                    Delete Selected
+                </button>
+            </div>
+            <div class="image-grid" id="image-grid"></div>
+        </div>
+    </dialog>
+
+    <!-- Settings Modal -->
+    <dialog id="modal-settings" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Settings</h3>
+                <button class="modal-close" data-close>&times;</button>
+            </div>
+            <div class="settings-body">
+                <label class="setting-row">
+                    <span>Eyedropper Size:</span>
+                    <select id="setting-eyedropper-size">
+                        <option value="32">32 &times; 32</option>
+                        <option value="64" selected>64 &times; 64</option>
+                        <option value="128">128 &times; 128</option>
+                        <option value="256">256 &times; 256</option>
+                    </select>
+                </label>
+                <label class="setting-row">
+                    <span>Export Format:</span>
+                    <select id="setting-export-format">
+                        <option value="hsl">HSL (H, S, L)</option>
+                        <option value="hex">Hex (hexcode)</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Import Modal -->
+    <dialog id="modal-import" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Import Palette</h3>
+                <button class="modal-close" data-close>&times;</button>
+            </div>
+            <div class="import-body">
+                <p>Choose how to handle the imported palette:</p>
+                <div class="import-actions">
+                    <button id="btn-import-replace" class="action-btn">Replace Current</button>
+                    <button id="btn-import-merge" class="action-btn">Merge With Current</button>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- URL Input Modal -->
+    <dialog id="modal-url" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Load Image from URL</h3>
+                <button class="modal-close" data-close>&times;</button>
+            </div>
+            <div class="url-body">
+                <input type="url" id="url-input" placeholder="https://example.com/image.jpg" class="url-field">
+                <button id="btn-url-load" class="action-btn">Load</button>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Hidden file inputs -->
+    <input type="file" id="file-input" accept="image/*" hidden>
+    <input type="file" id="json-input" accept=".json,application/json" hidden>
+
+    <script src="js/storage.js"></script>
+    <script src="js/image-viewer.js"></script>
+    <script src="js/palette.js"></script>
+    <script src="js/eyedropper.js"></script>
+    <script src="js/export.js"></script>
+    <script src="js/import.js"></script>
+    <script src="js/ui-components.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

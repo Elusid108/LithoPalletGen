@@ -1,0 +1,86 @@
+/* Tablet: stacked layout */
+@media (max-width: 1024px) {
+    .app-main {
+        flex-direction: column;
+    }
+
+    .panel-image {
+        flex: 1;
+    }
+
+    .panel-toolbox {
+        flex: 1;
+        border-left: none;
+        border-top: 1px solid var(--border);
+    }
+
+    .divider {
+        width: auto;
+        height: 5px;
+        cursor: row-resize;
+    }
+
+    .btn-label {
+        display: none;
+    }
+}
+
+/* Mobile: tabbed interface */
+@media (max-width: 768px) {
+    .mobile-tabs {
+        display: flex;
+    }
+
+    .divider {
+        display: none;
+    }
+
+    .app-main {
+        position: relative;
+    }
+
+    .panel {
+        position: absolute;
+        inset: 0;
+        transition: opacity 0.2s ease, visibility 0.2s ease;
+    }
+
+    .panel.hidden-mobile {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    .panel-toolbox {
+        border-left: none;
+        border-top: none;
+    }
+
+    .header-btn .btn-label {
+        display: none;
+    }
+
+    .toolbox-actions {
+        flex-direction: column;
+    }
+
+    .image-nav {
+        padding: 6px;
+    }
+
+    .thumbnail-item {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+/* Large desktop */
+@media (min-width: 1400px) {
+    .panel-image {
+        flex: 7;
+    }
+
+    .panel-toolbox {
+        flex: 3;
+    }
+}
