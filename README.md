@@ -1,4 +1,4 @@
-# LithoPalletGen v1.0.0
+# LithoPalletGen v1.1.0
 
 Palette generator for PIXEstl-based color lithophane apps. A browser-based tool that lets you upload reference images, sample colors with an area-averaging eyedropper, and export structured palette JSON files.
 
@@ -68,4 +68,5 @@ Static site with no build step required. Enable GitHub Pages from the `main` bra
 
 ## Version History
 
+- **v1.1.0** - Collapse base color name/hex edit row with sub-layers for a more compact list; display version number in settings; add author website link in settings
 - **v1.0.0** - Initial release: image management, palette builder, area-averaging eyedropper, HSL/hex export, import, responsive layout, dark/light theme

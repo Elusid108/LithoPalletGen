@@ -599,6 +599,7 @@ body {
     padding: 8px 12px;
 }
 
+.base-color-card.collapsed .base-color-edit,
 .base-color-card.collapsed .layers-container {
     display: none;
 }
@@ -864,6 +865,30 @@ body {
     background: var(--surface);
     color: var(--text-primary);
     font-size: 13px;
+}
+
+.settings-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-light);
+    margin-top: 8px;
+}
+
+.settings-link {
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.settings-link:hover {
+    text-decoration: underline;
+}
+
+.version-label {
+    font-size: 11px;
+    color: var(--text-muted);
 }
 
 /* Import modal */

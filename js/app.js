@@ -1,4 +1,6 @@
 (() => {
+    const APP_VERSION = '1.1.0';
+
     const Settings = {
         KEY: 'lithopallet_settings',
         defaults: {
@@ -60,6 +62,8 @@
         });
 
         Eyedropper.setBoxSize(Settings.get('eyedropperSize'));
+
+        document.getElementById('app-version').textContent = APP_VERSION;
     }
 
     function initUpload() {
